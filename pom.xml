@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>SimpleMavenJenkinsTest</groupId>
+  <artifactId>SimpleMavenJenkinsTest</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>SimpleMavenJenkinsTest</name>
+  <url>http://maven.apache.org</url>
+  
+   <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.argument.target>${maven.compiler.target}</maven.compiler.argument.target>
+    <maven.compiler.argument.source>${maven.compiler.source}</maven.compiler.argument.source>
+    <java.version>1.8</java.version>
+    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+    <testng.version>7.1.0</testng.version>
+    <suiteXmlFile>testng.xml</suiteXmlFile>
+    
+  </properties>
+
+  <dependencies>
+    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>3.8.1</version>
+	      <scope>test</scope>
+    </dependency>
+    <dependency>
+	    <groupId>org.testng</groupId>
+	    <artifactId>testng</artifactId>
+	    <version>${testng.version}</version>
+	    <scope>test</scope>
+    </dependency>
+  </dependencies>
+ 
+  <profiles>
+	  <profile>
+            <id>tryout-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build> 
+				  <plugins>
+				  	<plugin>
+				    	<groupId>org.apache.maven.plugins</groupId>
+				        <artifactId>maven-compiler-plugin</artifactId>
+				        <configuration>
+				        	<source>${java.version}</source>
+				            <target>${java.version}</target>
+				        </configuration>
+				        <version>${maven-compiler-plugin.version}</version>
+				  	</plugin>
+				  	<plugin>
+					    <groupId>org.apache.maven.plugins</groupId>
+					    <artifactId>maven-surefire-plugin</artifactId>
+					    <version>3.0.0-M3</version>
+					    <configuration> 						           		 
+					     <suiteXmlFiles>
+					      <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>				 
+					     </suiteXmlFiles>	
+					     <suitename>Test_Suite</suitename>     
+					    </configuration>
+   					</plugin>
+				  </plugins>
+			  </build> 
+		  </profile>
+	  </profiles>
+	  
+	      <repositories>
+        <repository>
+            <id>myMavenRepo.read</id>
+            <url>https://mymavenrepo.com/repo/EJdN6EQpMnudE3oKCADW/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>myMavenRepo.write</id>
+            <url>https://mymavenrepo.com/repo/HFLKVpvi1z04sTkJC9Q9/</url>
+        </repository>
+    </distributionManagement>
+</project>
